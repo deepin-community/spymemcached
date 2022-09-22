@@ -1,0 +1,61 @@
+Source: spymemcached
+Section: java
+Priority: optional
+Maintainer: Debian Java Maintainers <pkg-java-maintainers@lists.alioth.debian.org>
+Uploaders:
+ Andrius Merkys <merkys@debian.org>,
+ Christopher Hoskin <mans0954@debian.org>,
+Build-Depends:
+ debhelper-compat (= 12),
+ default-jdk,
+ maven-debian-helper (>= 2.1),
+ memcached <!nocheck>,
+ net-tools <!nocheck>,
+ procps <!nocheck>,
+Build-Depends-Indep:
+ junit4 <!nocheck>,
+ libdropwizard-metrics-java,
+ libjmock-java <!nocheck>,
+ libspring-beans-java,
+Standards-Version: 4.4.1
+Rules-Requires-Root: no
+Vcs-Git: https://salsa.debian.org/java-team/spymemcached.git
+Vcs-Browser: https://salsa.debian.org/java-team/spymemcached
+Homepage: http://www.couchbase.org/code/couchbase/java
+
+Package: libspymemcached-java
+Architecture: all
+Depends:
+ ${maven:Depends},
+ ${misc:Depends},
+Suggests:
+ ${maven:OptionalDepends},
+Description: simple, asynchronous, single-threaded memcached client
+ Spymemcached is a simple, asynchronous, single-threaded memcached client
+ written in Java, featuring:
+ .
+  *   Efficient storage of objects. General serializable objects are stored in
+      their serialized form and optionally compressed if they meet criteria.
+      Certain native objects are stored as tightly as possible (for example, a
+      Date object generally consumes six bytes, and a Long can be anywhere from
+      zero to eight bytes).
+ .
+  *   Resilient to server and network outages. In many cases, a client
+      operation can be replayed against a server if it goes away and comes
+      back. In cases where it can't, it will communicate that as well. An
+      exponential backoff reconnect algorithm is applied when a memcached
+      becomes unavailable, but asynchronous operations will queue up for the
+      server to be applied when it comes back online.
+ .
+  *   Operations are asynchronous. It is possible to issue a store and continue
+      processing without having to wait for that operation to finish. It is even
+      possible to issue a get, do some further processing, check the result of
+      the get and cancel it if it doesn't return fast enough.
+ .
+  *   There is only one thread for all processing. Regardless of the number of
+      requests, threads using the client, or servers to which the client is
+      connected, only one thread will ever be allocated to a given
+      MemcachedClient.
+ .
+  *   Aggressively optimized. There are many optimizations that combine to
+      provide high throughput.

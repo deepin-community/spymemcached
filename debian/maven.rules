@@ -1,0 +1,6 @@
+
+io.dropwizard.metrics metrics-parent pom s/.*/debian/ * *
+net.spy spymemcached jar s/.*/debian/ * *
+log4j log4j * s/1\.2\..*/1.2.x/ * *
+s/com.codahale.metrics/io.dropwizard.metrics/ * * s/.*/debian/ * *
+junit junit jar s/4\..*/4.x/

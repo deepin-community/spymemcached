@@ -1,0 +1,23 @@
+#!/usr/bin/make -f
+#Inspired by libmongodb-perl
+
+BUILDHOME = $(CURDIR)/debian/build
+PIDFILE   = $(BUILDHOME)/memcached.pid
+WHOAMI    = $(shell whoami)
+PORT := $(shell /bin/netstat -want | perl -w -e 'while (<>) { $$used{$$1}=1 if /127\.0\.0\.1:(\d+)/;}; $$port = 20000; while ($$used{$$port}) { $$port++ }; print "$$port\n";')
+
+%:
+	dh $@ --buildsystem=maven
+
+override_dh_auto_test:
+ifeq (,$(filter nocheck,$(DEB_BUILD_OPTIONS)))
+	mkdir -p $(BUILDHOME)
+	memcached -u $(WHOAMI) -p $(PORT) -P $(PIDFILE) -d
+	export SPY_MC_TEST_SERVER=localhost:$(PORT) SPYMC_TEST_SERVER_V4=localhost:$(PORT) SPYMC_TEST_SERVER_v6=::1:$(PORT);\
+	dh_auto_test -- -Dserver.port_number=$(PORT) -Dtest.type=ci test
+	[ ! -s $(PIDFILE) ] || /bin/kill `cat $(PIDFILE)`
+endif
+
+override_dh_clean:
+	dh_clean
+	rm -rf $(BUILDHOME)

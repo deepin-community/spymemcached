@@ -1,0 +1,12 @@
+spymemcached (2.12.3+dfsg-2) unstable; urgency=medium
+
+  * Switching to debhelper-compat to denote debhelper compatibility level.
+
+ -- Andrius Merkys <merkys@debian.org>  Mon, 11 Nov 2019 07:37:32 -0500
+
+spymemcached (2.12.3+dfsg-1) unstable; urgency=medium
+
+  [ Christopher Hoskin ]
+  * Initial release (Closes: #845789)
+
+ -- Andrius Merkys <merkys@debian.org>  Tue, 08 Oct 2019 06:51:45 -0400

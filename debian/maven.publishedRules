@@ -1,0 +1,2 @@
+
+net.spy spymemcached jar s/.*/debian/ * *
