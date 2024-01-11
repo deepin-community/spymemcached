@@ -1,3 +1,16 @@
+spymemcached (2.12.3+dfsg-3) unstable; urgency=medium
+
+  * Team upload.
+
+  [ Debian Janitor ]
+  * Apply multi-arch hints. + libspymemcached-java: Add Multi-Arch: foreign.
+
+  [ Jochen Sprickerhof ]
+  * Add patch to fix FTBFS (Closes: #1012108)
+  * Add missing build dependency on log4j 1.2
+
+ -- Jochen Sprickerhof <jspricke@debian.org>  Sun, 26 Feb 2023 17:08:21 +0100
+
 spymemcached (2.12.3+dfsg-2) unstable; urgency=medium
 
   * Switching to debhelper-compat to denote debhelper compatibility level.
