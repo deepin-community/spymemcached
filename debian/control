@@ -16,6 +16,7 @@ Build-Depends-Indep:
  junit4 <!nocheck>,
  libdropwizard-metrics-java,
  libjmock-java <!nocheck>,
+ liblog4j1.2-java,
  libspring-beans-java,
 Standards-Version: 4.4.1
 Rules-Requires-Root: no
@@ -30,6 +31,7 @@ Depends:
  ${misc:Depends},
 Suggests:
  ${maven:OptionalDepends},
+Multi-Arch: foreign
 Description: simple, asynchronous, single-threaded memcached client
  Spymemcached is a simple, asynchronous, single-threaded memcached client
  written in Java, featuring:
